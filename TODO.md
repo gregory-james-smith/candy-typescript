@@ -3,6 +3,8 @@
 - [ ] Figure out how to make a library where the functions are exportable 😅
 - [ ] Make the library tree shakable
 - [ ] Figure out how to make the library work in node and the browser
+- [ ] Try not to include extra dependencies
+- [ ] Do want to overlap with Ramda?
 
 # Features
 
