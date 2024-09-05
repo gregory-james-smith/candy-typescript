@@ -53,7 +53,7 @@ export function isEmptiness(...args: any[]) {
       case 'number':
         return arg === 0;
       case 'bigint':
-        return arg === 0;
+        return arg === 0n;
       case 'function':
         return false;
       case 'symbol':
@@ -93,7 +93,7 @@ export function isSubstantive(...args: any[]): boolean {
       case 'number':
         return arg !== 0 && !Number.isNaN(arg);
       case 'bigint':
-        return arg !== 0 && !Number.isNaN(arg);
+        return arg !== 0n && !Number.isNaN(arg);
       case 'function':
         return true;
       case 'symbol':

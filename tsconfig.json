@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Node 16",
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+      "lib": ["es2021", "DOM"],
+      "module": "commonjs",
+      "target": "ES2021",
+      "outDir": "build",
+      "sourceMap": true,
+      "strict": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", ".vscode"]
+  }
+  
