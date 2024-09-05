@@ -59,17 +59,9 @@ export function isEmptiness(...args: any[]) {
       case 'symbol':
         return false;
       case 'object':
-        if (arg === null) {
-          return false
-        } else if (arg instanceof Set) {
-          return arg.size === 0
-        } else if (arg instanceof Map) {
-          return arg.size === 0
-        } else if (arg instanceof Array) {
-          return arg.length === 0
-        }
+        return isEmptyObject(arg);
       default:
-        throw new Error(`Argument has unknown type ${typeof arg}`);
+        throw new Error(`Argument has unknown type ${typeof arg}.`);
     }
   })
 }
@@ -89,7 +81,7 @@ export function isEmptiness(...args: any[]) {
  * 
  * @returns True iff all the arguments have substance
  */
-export function isSubstance(...args: any[]): boolean {
+export function isSubstantive(...args: any[]): boolean {
   return args.every(arg => {
     switch (typeof arg) {
       case 'undefined':
@@ -107,17 +99,58 @@ export function isSubstance(...args: any[]): boolean {
       case 'symbol':
         return true;
       case 'object':
-        if (arg === null) {
-          return false
-        } else if (arg instanceof Set) {
-          return arg.size !== 0
-        } else if (arg instanceof Map) {
-          return arg.size !== 0
-        } else if (arg instanceof Array) {
-          return arg.length !== 0
-        }
+        return isSubstantiveObject(arg)
       default:
-        throw new Error(`Argument has unknown type ${typeof arg}`);
+        throw new Error(`Argument has unknown type ${typeof arg}.`);
     }
   })
 }
+
+/**
+ * Not to be used externally because it might be misleading.
+ * This will properly check an argument which returns 
+ * 'object' using typeof, it will not check an argument of 
+ * type Object properly. For example, undefined will error.
+ * 
+ * @private
+ */
+function isEmptyObject(arg: Object) {
+  if (arg === null) {
+    return false
+  } else if (arg instanceof Set) {
+    return arg.size === 0
+  } else if (arg instanceof Map) {
+    return arg.size === 0
+  } else if (arg instanceof Array) {
+    return arg.length === 0
+  }
+
+  const properties = Object.getOwnPropertyNames(arg);
+  const symbols = Object.getOwnPropertySymbols(arg);
+  return properties.length === 0 && symbols.length === 0;
+}
+
+/**
+ * Not to be used externally because it might be misleading.
+ * This will properly check an argument which returns 
+ * 'object' using typeof, it will not check an argument of 
+ * type Object properly. For example, undefined will error.
+ * 
+ * @private
+ */
+function isSubstantiveObject(arg: Object) {
+  if (arg === null) {
+    return false
+  } else if (arg instanceof Set) {
+    return arg.size !== 0
+  } else if (arg instanceof Map) {
+    return arg.size !== 0
+  } else if (arg instanceof Array) {
+    return arg.length !== 0
+  }
+
+  const properties = Object.getOwnPropertyNames(arg);
+  const symbols = Object.getOwnPropertySymbols(arg);
+  return properties.length !== 0 || symbols.length !== 0;
+}
+
