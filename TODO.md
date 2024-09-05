@@ -10,10 +10,10 @@
 
 - [ ] Error expressions
 - [ ] Proper nothing/???/substance — like nullish, falsey and truthy — isNothing, isSomething, is??? — blank/zero/empty/thin — also combinations isNothingOrZero etc.
-    - isNothingness
-    - isEmptiness
-    - isSubstance
-    - Combinations of the above and negations
+    - [x] isNothingness
+    - [x] isEmptiness
+    - [x] isSubstance
+    - [ ] Combinations of the above and negations
 - [ ] Special data structures — arrays, sets, maps — which can work with each other, immutable of course, but also extend the other data structures so can replace them
 - [ ] Sequential data structures — arrays and vectors?
 - [ ] ParseInteger
