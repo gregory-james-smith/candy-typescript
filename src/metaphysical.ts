@@ -1,3 +1,6 @@
+/**
+ * @file Broadly speaking nothingness is analogous to nullish, emptiness to falsy, and substantive to truthy.
+ */
 
 /**
  * Checks if all the arguments are nothing.
@@ -123,6 +126,8 @@ function isEmptyObject(arg: Object) {
     return arg.size === 0
   } else if (arg instanceof Array) {
     return arg.length === 0
+  } else if (arg instanceof String) {
+    return arg.length === 0
   }
 
   const properties = Object.getOwnPropertyNames(arg);
@@ -146,6 +151,8 @@ function isSubstantiveObject(arg: Object) {
   } else if (arg instanceof Map) {
     return arg.size !== 0
   } else if (arg instanceof Array) {
+    return arg.length !== 0
+  } else if (arg instanceof String) {
     return arg.length !== 0
   }
 
