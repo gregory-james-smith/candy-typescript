@@ -1,5 +1,26 @@
 import { isEmptiness, isNothingness, isSubstantive } from '../metaphysical'
 
+describe('No arguments', () => {
+  test('isNothingness', () => {
+    // Test
+    const result = isNothingness()
+    // Assert
+    expect(result).toBeTruthy()
+  })
+  test('isEmptiness', () => {
+    // Test
+    const result = isEmptiness()
+    // Assert
+    expect(result).toBeTruthy()
+  })
+  test('isSubstantiveness', () => {
+    // Test
+    const result = isSubstantive()
+    // Assert
+    expect(result).toBeTruthy()
+  })
+})
+
 describe('isNothingness', () => {
   const f = isNothingness;
   describe('nothingness', () => {
