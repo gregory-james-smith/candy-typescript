@@ -20,3 +20,11 @@
 - [ ] ParseNumber
 - [ ] Arithmetic — like Clojure, perfect accuracy, lazily evaluated, real numbers only?
 - [ ] Safe JSON.stringify and .parse()
+- [ ] is
+    - [ ] isArray
+        - [ ] isStringArray
+    - [ ] isNumber
+        - [ ] isInteger
+        - [ ] isFloat
+    - [ ] isString
+    - ...
