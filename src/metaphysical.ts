@@ -61,10 +61,22 @@ export function isEmptiness(...args: any[]) {
         return false;
       case 'symbol':
         return false;
-      case 'object':
-        return isEmptyObject(arg);
-      default:
-        throw new Error(`Argument has unknown type ${typeof arg}.`);
+      default: // object
+        if (arg === null) {
+          return false
+        } else if (arg instanceof Set) {
+          return arg.size === 0
+        } else if (arg instanceof Map) {
+          return arg.size === 0
+        } else if (arg instanceof Array) {
+          return arg.length === 0
+        } else if (arg instanceof String) {
+          return arg.length === 0
+        }
+      
+        const properties = Object.getOwnPropertyNames(arg);
+        const symbols = Object.getOwnPropertySymbols(arg);
+        return properties.length === 0 && symbols.length === 0;
     }
   })
 }
@@ -101,63 +113,22 @@ export function isSubstantive(...args: any[]): boolean {
         return true;
       case 'symbol':
         return true;
-      case 'object':
-        return isSubstantiveObject(arg)
-      default:
-        throw new Error(`Argument has unknown type ${typeof arg}.`);
+      default: // object
+        if (arg === null) {
+          return false
+        } else if (arg instanceof Set) {
+          return arg.size !== 0
+        } else if (arg instanceof Map) {
+          return arg.size !== 0
+        } else if (arg instanceof Array) {
+          return arg.length !== 0
+        } else if (arg instanceof String) {
+          return arg.length !== 0
+        }
+      
+        const properties = Object.getOwnPropertyNames(arg);
+        const symbols = Object.getOwnPropertySymbols(arg);
+        return properties.length !== 0 || symbols.length !== 0;
     }
   })
 }
-
-/**
- * Not to be used externally because it might be misleading.
- * This will properly check an argument which returns 
- * 'object' using typeof, it will not check an argument of 
- * type Object properly. For example, undefined will error.
- * 
- * @private
- */
-function isEmptyObject(arg: Object) {
-  if (arg === null) {
-    return false
-  } else if (arg instanceof Set) {
-    return arg.size === 0
-  } else if (arg instanceof Map) {
-    return arg.size === 0
-  } else if (arg instanceof Array) {
-    return arg.length === 0
-  } else if (arg instanceof String) {
-    return arg.length === 0
-  }
-
-  const properties = Object.getOwnPropertyNames(arg);
-  const symbols = Object.getOwnPropertySymbols(arg);
-  return properties.length === 0 && symbols.length === 0;
-}
-
-/**
- * Not to be used externally because it might be misleading.
- * This will properly check an argument which returns 
- * 'object' using typeof, it will not check an argument of 
- * type Object properly. For example, undefined will error.
- * 
- * @private
- */
-function isSubstantiveObject(arg: Object) {
-  if (arg === null) {
-    return false
-  } else if (arg instanceof Set) {
-    return arg.size !== 0
-  } else if (arg instanceof Map) {
-    return arg.size !== 0
-  } else if (arg instanceof Array) {
-    return arg.length !== 0
-  } else if (arg instanceof String) {
-    return arg.length !== 0
-  }
-
-  const properties = Object.getOwnPropertyNames(arg);
-  const symbols = Object.getOwnPropertySymbols(arg);
-  return properties.length !== 0 || symbols.length !== 0;
-}
-

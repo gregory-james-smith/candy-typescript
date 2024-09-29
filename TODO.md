@@ -28,3 +28,8 @@
         - [ ] isFloat
     - [ ] isString
     - ...
+
+# Metaphysical
+
+- [ ] Add type guards and other inferences to remove types and values using 'is' operator
+- [ ] : args is null[] | undefined[] | number[]
