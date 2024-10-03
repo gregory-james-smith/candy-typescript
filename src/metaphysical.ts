@@ -2,6 +2,35 @@
  * @file Broadly speaking nothingness is analogous to nullish, emptiness to falsy, and substantive to truthy.
  */
 
+import { Nothing } from "./metaphysical.types";
+
+/**
+ * Checks if the argument is nothing.
+ * 
+ * Nothingness includes NaN and all the nullish
+ * values -- null, undefined.
+ * 
+ * Nothingness is not emptiness or substance.
+ * 
+ * @param arg The argument to check
+ * 
+ * @returns True iff the argument is nothing
+ */
+export function isNothing(arg: any): arg is Nothing {
+  switch (typeof arg) {
+    case 'undefined':
+      return true;
+    case 'number':
+      return Number.isNaN(arg);
+    case 'bigint':
+      return Number.isNaN(arg);
+    case 'object':
+      return arg === null;
+    default: // other types
+      return false;
+  }
+}
+
 /**
  * Checks if all the arguments are nothing.
  * 
@@ -15,20 +44,7 @@
  * @returns True iff all the arguments are nothing
  */
 export function isNothingness(...args: any[]) {
-  return args.every(arg => {
-    switch (typeof arg) {
-      case 'undefined':
-        return true;
-      case 'number':
-        return Number.isNaN(arg);
-      case 'bigint':
-        return Number.isNaN(arg);
-      case 'object':
-        return arg === null;
-      default: // other types
-        return false;
-    }
-  })
+  return args.every(arg => isNothing(arg));
 }
 
 /**
@@ -73,7 +89,7 @@ export function isEmptiness(...args: any[]) {
         } else if (arg instanceof String) {
           return arg.length === 0
         }
-      
+
         const properties = Object.getOwnPropertyNames(arg);
         const symbols = Object.getOwnPropertySymbols(arg);
         return properties.length === 0 && symbols.length === 0;
@@ -125,7 +141,7 @@ export function isSubstantive(...args: any[]): boolean {
         } else if (arg instanceof String) {
           return arg.length !== 0
         }
-      
+
         const properties = Object.getOwnPropertyNames(arg);
         const symbols = Object.getOwnPropertySymbols(arg);
         return properties.length !== 0 || symbols.length !== 0;
