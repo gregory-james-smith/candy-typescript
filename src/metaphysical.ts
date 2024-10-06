@@ -2,10 +2,10 @@
  * @file Broadly speaking nothingness is analogous to nullish, emptiness to falsy, and substantive to truthy.
  */
 
-import { Nothing } from "./metaphysical.types";
+import { Empty, Nothing } from "./metaphysical.types";
 
 /**
- * Checks if the argument is nothing.
+ * Checks if the argument is nothing
  * 
  * Nothingness includes NaN and all the nullish
  * values -- null, undefined.
@@ -43,7 +43,7 @@ export function isNothing(arg: any): arg is Nothing {
  * 
  * @returns True iff all the arguments are nothing
  */
-export function isNothingness(...args: any[]) {
+export function isNothingness(...args: any[]): boolean {
   return args.every(arg => isNothing(arg));
 }
 
@@ -60,7 +60,7 @@ export function isNothingness(...args: any[]) {
  * 
  * @returns True iff the argument are empty
  */
-export function isEmpty(arg: any) {
+export function isEmpty(arg: any): arg is Empty {
   switch (typeof arg) {
     case 'undefined':
       return false;
@@ -108,7 +108,7 @@ export function isEmpty(arg: any) {
  * 
  * @returns True iff all the arguments are empty
  */
-export function isEmptiness(...args: any[]) {
+export function isEmptiness(...args: any[]): boolean {
   return args.every(arg => isEmpty(arg))
 }
 
