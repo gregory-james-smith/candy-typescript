@@ -39,6 +39,10 @@ export function isNothing(arg: any): arg is Nothing {
  * 
  * Nothingness is not emptiness or substance.
  * 
+ * Cannot be used as a type guard because a type 
+ * predicate cannot reference a rest parameter. See
+ * {@link isNothing} instead.
+ * 
  * @param args The arguments to check
  * 
  * @returns True iff all the arguments are nothing
@@ -103,6 +107,10 @@ export function isEmpty(arg: any): arg is Empty {
  * zero and false.
  * 
  * Emptiness is not nothingness or substance.
+ * 
+ * Cannot be used as a type guard because a type 
+ * predicate cannot reference a rest parameter. See
+ * {@link isEmpty} instead.
  * 
  * @param args The arguments to check
  * 
@@ -172,6 +180,10 @@ export function isSubstance(arg: any) {
  * considered to have substance.
  * 
  * Substance is not nothingness or emptiness.
+ * 
+ * Cannot be used as a type guard because a type 
+ * predicate cannot reference a rest parameter. See
+ * {@link isSubstance} instead.
  * 
  * @param args The arguments to check
  * 
