@@ -1,9 +1,10 @@
 {
-  "name": "sugar-typescript",
+  "name": "candy-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "A library of syntactic sugar for Typescript",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest --verbose --detectOpenHandles --colors"
   },
   "keywords": [],

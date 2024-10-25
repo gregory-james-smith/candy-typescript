@@ -3,10 +3,10 @@
     "display": "Node 16",
     "extends": "@tsconfig/node16/tsconfig.json",
     "compilerOptions": {
-      "lib": ["es2021", "DOM"],
+      "lib": ["ES2023"],
       "module": "commonjs",
       "target": "ES2021",
-      "outDir": "build",
+      "outDir": "dist",
       "sourceMap": true,
       "strict": true,
       "experimentalDecorators": true,
