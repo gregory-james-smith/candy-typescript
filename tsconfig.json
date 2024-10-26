@@ -22,6 +22,6 @@
     "node_modules",
     ".vscode",
     "**/*.test.ts",
-    "**/__tests__/*"
+    "**/__tests__/**/*"
   ]
 }
