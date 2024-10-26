@@ -7,7 +7,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "declaration": true,
-    "target": "es6",
+    "target": "ES2020",
     "outDir": "dist",
     "sourceMap": true,
     "strict": true,
@@ -20,6 +20,8 @@
   ],
   "exclude": [
     "node_modules",
-    ".vscode"
+    ".vscode",
+    "**/*.test.ts",
+    "**/__tests__/*"
   ]
 }
