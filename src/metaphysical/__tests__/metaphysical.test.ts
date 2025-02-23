@@ -1,20 +1,24 @@
-import { isEmptiness, isNothingness, isSubstantive } from "../metaphysical";
+import {
+  isEmptiness,
+  isEmpty,
+  isNothing,
+  isNothingness,
+  isSubstance,
+  isSubstantive,
+} from "../metaphysical";
 
 describe.each([
   // Function, Nothingness result, Emptiness result, Substantiveness result
+  [isNothing, true, false, false],
+  [isEmpty, false, true, false],
+  [isSubstance, false, false, true],
   [isNothingness, true, false, false],
   [isEmptiness, false, true, false],
   [isSubstantive, false, false, true],
 ])(
-  "metaphysical",
+  "metaphysical single argument",
   (f, nothingnessCheck, emptinessCheck, substantivenessCheck) => {
     describe(`${f.name}`, () => {
-      test("no arguments is vacuously true", () => {
-        // Test
-        const result = f();
-        // Assert
-        expect(result).toBeTruthy();
-      });
       describe.each([
         ["undefined", undefined],
         ["null", null],
@@ -72,6 +76,92 @@ describe.each([
         test(message, () => {
           // Test
           const result = f(input);
+          // Assert
+          expect(result).toBe(substantivenessCheck);
+        });
+      });
+    });
+  }
+);
+
+describe.each([
+  // Function, Nothingness result, Emptiness result, Substantiveness result
+  [isNothingness, true, false, false],
+  [isEmptiness, false, true, false],
+  [isSubstantive, false, false, true],
+])(
+  "metaphysical multiple arguments",
+  (f, nothingnessCheck, emptinessCheck, substantivenessCheck) => {
+    describe(`${f.name}`, () => {
+      test("no arguments is vacuously true", () => {
+        // Test
+        const result = f();
+        // Assert
+        expect(result).toBeTruthy();
+      });
+      describe.each([["nullish values", [undefined, null, NaN]]])(
+        `nothingness`,
+        (message, input) => {
+          test(message, () => {
+            // Test
+            const result = f(...input);
+            // Assert
+            expect(result).toBe(nothingnessCheck);
+          });
+        }
+      );
+      describe.each([
+        [
+          "empty values",
+          [
+            false,
+            0,
+            0n,
+            "",
+            [],
+            {},
+            new String(""),
+            new Array(),
+            new Object(),
+            new Map(),
+            new Set(),
+          ],
+        ],
+      ])("emptiness", (message, input) => {
+        test(message, () => {
+          // Test
+          const result = f(...input);
+          // Assert
+          expect(result).toBe(emptinessCheck);
+        });
+      });
+      describe.each([
+        [
+          "substantive values",
+          [
+            true,
+            1,
+            1n,
+            "a",
+            ["a"],
+            { a: 1 },
+            new String("a"),
+            new Array("a"),
+            new Object({ a: 1 }),
+            class Input {},
+            new Map([["a", 1]]),
+            new Set("a"),
+            Symbol(),
+            () => {},
+            function input() {
+              return;
+            },
+          ],
+        ],
+      ])("substantiveness", (message, input) => {
+        test(message, () => {
+          // Test
+          const result = f(...input);
           // Assert
           expect(result).toBe(substantivenessCheck);
         });

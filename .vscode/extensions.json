@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "biomejs.biome",
-        "yzhang.markdown-all-in-one"
+        "yzhang.markdown-all-in-one",
+        "orta.vscode-jest"
     ]
 }
