@@ -1,5 +1,7 @@
 export type Nothing = void | null | undefined;
 
+export type Zero = 0 | 0n;
+
 export type EmptyString = "";
 export type EmptyArray = void[];
 
@@ -16,8 +18,7 @@ export type EmptySet = Set<void>;
 export type EmptyMap = Map<void, void>;
 export type Empty =
 	| false
-	| 0
-	| 0n
+	| Zero
 	| EmptyString
 	| EmptyObject
 	| EmptyArray
